@@ -54,24 +54,27 @@ const requestHandler = (request, response) => {
 
   if ((dlon == 0) && (mlon == 0) && (slon == 0) &&
       (dlat == 0) && (mlat == 0) && (slat == 0)) {
-    response.end('<html><h1>dms2dd</h1><p>Welcome to the dms 2 dd converter.\
-      </p><p>Url queries work like this:</p>\
-      <code>http://[ip address]:[port]/?dlat=44&mlat=33&slat=22&dlon=44&mlon=33</code>\
-      <p>Returns decimal degree coordinates in a json object:</p>\
-      <code>{"latitude":44.556111,"longitude":44.55}</code>\
-      <br /><br />\
-      <div>\
-        <form action="/" method="GET">\
-          <label>Latitude Degrees <input type="text" name="dlat" value="" /></label> \
-          <label>Latitude Minutes <input type="text" name="mlat" value="" /> \
-          <label>Latitude Seconds <input type="text" name="slat" value="" /> \
-          <br /><br />\
-          <label>Longitude Degrees <input type="text" name="dlon" value="" /> \
-          <label>Longitude Minutes <input type="text" name="mlon" value="" /> \
-          <label>Longitude Seconds <input type="text" name="slon" value="" /> \
-          <br /><br />\
-          <input type="submit" /> \
-        </form>\
+    response.end(
+      '<html>\
+        <h1>dms2dd</h1>\
+        <p>Welcome to the dms 2 dd converter.</p>\
+        <p>Url queries work like this:</p>\
+        <code>http://[ip address]:[port]/?dlat=44&mlat=33&slat=22&dlon=44&mlon=33</code>\
+        <p>Returns decimal degree coordinates in a json object:</p>\
+        <code>{"latitude":44.556111,"longitude":44.55}</code>\
+        <br /><br />\
+        <div>\
+          <form action="/" method="GET">\
+            <label>Latitude Degrees <input type="text" name="dlat" value="" /></label> \
+            <label>Latitude Minutes <input type="text" name="mlat" value="" /> \
+            <label>Latitude Seconds <input type="text" name="slat" value="" /> \
+            <br /><br />\
+            <label>Longitude Degrees <input type="text" name="dlon" value="" /> \
+            <label>Longitude Minutes <input type="text" name="mlon" value="" /> \
+            <label>Longitude Seconds <input type="text" name="slon" value="" /> \
+            <br /><br />\
+            <input type="submit" /> \
+          </form>\
       </div>\
       </html>');
   }
