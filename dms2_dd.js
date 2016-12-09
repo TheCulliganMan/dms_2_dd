@@ -56,7 +56,7 @@ const requestHandler = (request, response) => {
       (dlat == 0) && (mlat == 0) && (slat == 0)) {
     response.end('<html><h1>dms2dd</h1><p>Welcome to the dms 2 dd converter.\
       </p><p>Url queries work like this:</p>\
-      <code>http://[ip address]:8086/?dlat=44&mlat=33&slat=22&dlon=44&mlon=33<code>\
+      <code>http://[ip address]:8086/?dlat=44&mlat=33&slat=22&dlon=44&mlon=33</code>\
       <p>Returns decimal degree coordinates in a json object:</p>\
       <code>{"latitude":44.556111,"longitude":44.55}</code>\
       </html>');
@@ -80,7 +80,7 @@ const requestHandler = (request, response) => {
 
   if (compareNumber(absdlat, (90 * 1000000)) == '+' )  {
     response.statusCode = 406;
-    response.end(' Degrees Latitude must be in the range of -90 to 90. ');
+    response.end('Degrees Latitude must be in the range of -90 to 90. ');
   }
 
   // Latitude Minutes
