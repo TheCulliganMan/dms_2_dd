@@ -52,6 +52,16 @@ const requestHandler = (request, response) => {
   var absslat = 0;
   var absslon = 0;
 
+  if ((dlon == 0) && (mlon == 0) && (slon == 0) &&
+      (dlat == 0) && (mlat == 0) && (slat == 0)) {
+    response.end('<html><h1>dms2dd</h1><p>Welcome to the dms 2 dd converter.\
+      </p><p>Url queries work like this:</p>\
+      <code>http://[ip address]:8086/?dlat=44&mlat=33&slat=22&dlon=44&mlon=33<code>\
+      <p>Returns decimal degree coordinates in a json object:</p>\
+      <code>{"latitude":44.556111,"longitude":44.55}</code>\
+      </html>');
+  }
+
   function compareNumber(a, b) {
 
     if (a < b) return '-';
@@ -70,10 +80,7 @@ const requestHandler = (request, response) => {
 
   if (compareNumber(absdlat, (90 * 1000000)) == '+' )  {
     response.statusCode = 406;
-    //alert(' Degrees Latitude must be in the range of -90 to 90. ');
-    dlat = '';
-    mlat='';
-    slat='';
+    response.end(' Degrees Latitude must be in the range of -90 to 90. ');
   }
 
   // Latitude Minutes
@@ -83,8 +90,6 @@ const requestHandler = (request, response) => {
   if (compareNumber(absmlat, (60 * 1000000)) == '+') {
     response.statusCode = 406;
     response.end('Minutes Latitude must be in the range of 0 to 59. ');
-    mlat='';
-    slat='';
   }
 
   // Latitude Seconds
@@ -94,7 +99,6 @@ const requestHandler = (request, response) => {
   if (compareNumber(absslat,  (59.99999999 * 1000000)) ==  '+' ) {
     response.statusCode = 406;
     response.end('Seconds Latitude must be 0 or greater \n and less than 60. ');
-    slat='';
   }
 
   // Longitude Degrees
@@ -108,9 +112,6 @@ const requestHandler = (request, response) => {
   if (compareNumber(absdlon, (180 * 1000000)) == '+') {
     response.statusCode = 406;
     response.end('Degrees Longitude must be in the range of -180 to 180. ');
-    dlon='';
-    mlon='';
-    slon='';
   }
 
   // Longitude Minutes
@@ -120,8 +121,6 @@ const requestHandler = (request, response) => {
   if (compareNumber(absmlon, (60 * 1000000)) == '+')   {
     response.statusCode = 406;
     response.end('Minutes Longitude must be in the range of 0 to 59. ');
-    mlon='';
-    slon='';
   }
 
   // Longitude Seconds
@@ -136,7 +135,6 @@ const requestHandler = (request, response) => {
   var dd_lat = ((Math.round(absdlat + (absmlat / 60.) + (absslat/3600.)) / 1000000)) * latsign;
   var dd_lon = ((Math.round(absdlon + (absmlon / 60.) + (absslon/3600)) / 1000000)) * lonsign;
 
-  response.setHeader('Content-Type', 'application/json');
   response.end(JSON.stringify({'latitude': dd_lat, 'longitude': dd_lon}));
 
 }
