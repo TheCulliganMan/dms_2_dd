@@ -1,0 +1,11 @@
+{
+  "name": "dms2dd",
+  "version": "1.0.0",
+  "description": "api to convert dms to dd",
+  "author": "Ryan Culligan <rrculligan@gmail.com>",
+  "main": "dms2dd.js",
+  "scripts": {
+    "start": "node dms2dd.js"
+  },
+  "dependencies": {}
+}
